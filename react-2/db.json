@@ -89,61 +89,15 @@
       "preferred_branch": "commerce"
     },
     {
+      "first_name": "Ashish",
+      "last_name": "mohanty",
+      "email": "tulumhnt@gmail.com",
+      "gender": "male",
+      "age": "23",
+      "tenth_score": "11",
+      "twelth_score": "43",
+      "preferred_branch": "commerce",
       "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
-    },
-    {
-      "id": 15
-    },
-    {
-      "id": 16
-    },
-    {
-      "id": 17
-    },
-    {
-      "id": 18
-    },
-    {
-      "id": 19
-    },
-    {
-      "id": 20
-    },
-    {
-      "id": 21
-    },
-    {
-      "id": 22
-    },
-    {
-      "id": 23
-    },
-    {
-      "id": 24
-    },
-    {
-      "id": 25
-    },
-    {
-      "id": 26
-    },
-    {
-      "id": 27
     }
   ]
 }

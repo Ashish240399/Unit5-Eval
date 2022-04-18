@@ -1,0 +1,10 @@
+.table {
+    border:1px solid;
+}
+tr td{
+    border:1px solid;
+    padding:10px; 
+}
+.controls{
+    display: flex;
+}

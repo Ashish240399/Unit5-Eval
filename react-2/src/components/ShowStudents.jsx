@@ -1,38 +1,36 @@
 import { useEffect, useState } from "react";
-import { AddStudent } from "./AddStudent";
-
+import "./showdata.css"
 export const ShowStudents = () => {
-    const [list,setList]=useState([]);
-    const [filter,setFilter]=useState([]);
-    useEffect(()=>{
-        getData();
-    },[list]);
-    async function getData(){
-        const data=await fetch("http://localhost:8080/students");
-        const res=await data.json();
-        setList(res);
-        setFilter(res)
-    }
-    const handleChange1=(e)=>{
-        var a=e.target.value
-        if(a=="first_name"){
-            var newarray=list.filter((e)=>e.first_name==a)
-            setFilter(newarray)
-        }
-        
-    }
-    const handleChange2=(e)=>{
+  const [studentslist,setStudentslist]=useState([])
+  const [sortby,setSortby]=useState("first_name")
+  const [order,setOrder]=useState("asc")
+  const [sort,setSort]=useState(true)
 
-    }
+  useEffect(()=>{
+    getData()
+    return
+  },[])
+  const getData=async()=>{
+    let res=await fetch("http://localhost:8080/students")
+    let data=await res.json()
+    setStudentslist(data)
+  }
+ 
+  
+  const sortData=async()=>{
+    let res=await fetch(`http://localhost:8080/students?_sort=${sortby}&_order=${order}`)
+    let data=await res.json()
+    setStudentslist(data)
+  }
   return (
     <div>
       <div className="controls">
-          
         <div>
           Sort By:{" "}
           <select
             // select dropdown needs both value and onChange
-            onChange={handleChange1}
+          
+            onChange={(e)=>setSortby(e.target.value)}
             className="sortby"
           >
             <option value="first_name">First Name</option>
@@ -46,16 +44,15 @@ export const ShowStudents = () => {
           Order:
           <select
             // select dropdown needs both value and onChange
-            onChange={handleChange2}
+          
+            onChange={(e)=>setOrder(e.target.value)}
             className="sortorder"
           >
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
           </select>
         </div>
-        <button onClick={()=>{
-
-        }} className="sort">sort</button>
+        <button onClick={()=>sortData()} className="sort">sort</button>
       </div>
       <table className="table">
         <thead>
@@ -72,20 +69,19 @@ export const ShowStudents = () => {
         </thead>
         <tbody className="tbody">
           {/* populate all rows like below: */}
-          {filter.map((el)=>(
-             
-          <tr className="row">
-            <td className="first_name">{el.first_name}</td>
-            <td className="last_name">{el.last_name}</td>
-            <td className="email">{el.email}</td>
-            <td className="gender">{el.gender}</td>
-            <td className="age">{el.age}</td>
-            <td className="tenth_score">{el.tenth_score}</td>
-            <td className="twelth_score">{el.twelth_score}</td>
-            <td className="preferred_branch">{el.preferred_branch}</td>
-          </tr>
-          ))}
-          
+          {studentslist.map((e)=>{ 
+          return <tr key={e.id} className="row">
+            <td className="first_name">{e.first_name}</td>
+            <td className="last_name">{e.last_name}</td>
+            <td className="email">{e.email}</td>
+            <td className="gender">{e.gender}</td>
+            <td className="age">{e.age}</td>
+            <td className="tenth_score">{e.tenth_score}</td>
+            <td className="twelth_score">{e.twelth_score}</td>
+            <td className="preferred_branch">{e.preferred_branch}</td>
+          </tr>})
+         
+}   
         </tbody>
       </table>
     </div>
